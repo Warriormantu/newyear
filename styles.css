@@ -1,0 +1,717 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --bg-dark-1: #0f2027;
+    --bg-dark-2: #203a43;
+    --bg-dark-3: #2c5364;
+    --gold: #ffd700;
+    --gold-light: #ffe55c;
+    --pink: #ff006e;
+    --cyan: #00f5ff;
+    --purple: #8b5cf6;
+    --white: #ffffff;
+    --white-80: rgba(255, 255, 255, 0.8);
+    --white-60: rgba(255, 255, 255, 0.6);
+    --white-40: rgba(255, 255, 255, 0.4);
+    --white-20: rgba(255, 255, 255, 0.2);
+
+    /* Fonts */
+    --font-primary: 'Outfit', sans-serif;
+    --font-digital: 'Orbitron', monospace;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-glow-gold: 0 0 20px rgba(255, 215, 0, 0.5);
+    --shadow-glow-pink: 0 0 30px rgba(255, 0, 110, 0.6);
+    --shadow-glow-cyan: 0 0 30px rgba(0, 245, 255, 0.6);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: var(--font-primary);
+    background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+    background-attachment: fixed;
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ========================================
+   ANIMATED PARTICLES BACKGROUND
+   ======================================== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, var(--white) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+    }
+
+    25% {
+        transform: translateY(-100px) translateX(50px) scale(1.2);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-200px) translateX(-30px) scale(0.8);
+        opacity: 0.4;
+    }
+
+    75% {
+        transform: translateY(-100px) translateX(-50px) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* ========================================
+   MAIN CONTAINER
+   ======================================== */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+    text-align: center;
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.title-text {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite;
+    text-shadow: var(--shadow-glow-gold);
+}
+
+.emoji-sparkle {
+    font-size: clamp(2rem, 6vw, 4rem);
+    display: inline-block;
+    animation: rotate 4s linear infinite;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    color: var(--white-80);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ========================================
+   COUNTDOWN SECTION
+   ======================================== */
+.countdown-section {
+    width: 100%;
+    max-width: 900px;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--white-20);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, var(--white-20), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: var(--gold);
+    box-shadow: var(--shadow-glow-gold), var(--shadow-card);
+}
+
+.countdown-item:hover::before {
+    animation: shimmer 1.5s infinite;
+}
+
+.countdown-value {
+    font-family: var(--font-digital);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+    animation: pulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+.countdown-label {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 600;
+    color: var(--white-60);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   CELEBRATION SECTION
+   ======================================== */
+.celebration-section {
+    text-align: center;
+    animation: celebrationPop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.celebration-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--pink) 0%, var(--gold) 50%, var(--cyan) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 2s ease infinite, bounce 1s ease infinite;
+}
+
+.emoji-party {
+    display: inline-block;
+    font-size: clamp(2rem, 6vw, 4rem);
+    animation: bounce 1s ease infinite;
+}
+
+.celebration-message {
+    font-size: clamp(1.125rem, 3vw, 1.75rem);
+    font-weight: 300;
+    color: var(--white-80);
+    animation: fadeIn 1s ease 0.5s backwards;
+}
+
+/* ========================================
+   GREETING SECTION
+   ======================================== */
+.greeting-section {
+    width: 100%;
+    max-width: 600px;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+
+.greeting-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--white-20);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+}
+
+.greeting-card:hover {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-glow-gold), var(--shadow-card);
+}
+
+.greeting-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--gold);
+}
+
+.greeting-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--white-80);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.name-input-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: 0;
+}
+
+.name-input {
+    flex: 1;
+    padding: var(--spacing-md);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--white-20);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.name-input::placeholder {
+    color: var(--white-40);
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.greet-btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--bg-dark-1);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.greet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.greet-btn:active {
+    transform: translateY(0);
+}
+
+.personalized-message {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--pink);
+    animation: fadeInScale 0.5s ease;
+    margin-top: var(--spacing-lg);
+}
+
+.personal-greeting-header {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.sparkle {
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.user-name {
+    color: var(--gold);
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.personal-greeting-message {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--white-80);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+}
+
+.personal-greeting-emoji {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: var(--spacing-sm);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    text-align: center;
+    margin-top: auto;
+    padding-top: var(--spacing-xl);
+    animation: fadeIn 1s ease-out 0.9s backwards;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: var(--white-60);
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-credit {
+    font-size: 0.875rem;
+    color: var(--white-60);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 300;
+}
+
+.developer-name {
+    color: var(--gold);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.developer-name:hover {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.footer-copyright {
+    font-size: 0.75rem;
+    color: var(--white-40);
+    margin-bottom: var(--spacing-md);
+    font-weight: 300;
+}
+
+.footer-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 2px solid var(--white-20);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.footer-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   FIREWORKS & CONFETTI
+   ======================================== */
+.fireworks-container,
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.firework {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: fireworkExplode 1.5s ease-out forwards;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 3s linear forwards;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 10px var(--gold));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 30px var(--gold-light));
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes celebrationPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+        gap: var(--spacing-lg);
+    }
+
+    .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+    }
+
+    .countdown-item {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .greeting-card {
+        padding: var(--spacing-lg);
+    }
+
+    .name-input-container {
+        flex-direction: column;
+    }
+
+    .greet-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .countdown-grid {
+        grid-template-columns: 1fr;
+    }
+}

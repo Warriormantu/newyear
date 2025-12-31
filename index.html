@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Celebrate New Year 2026 with a live countdown timer and stunning celebration effects. Join the countdown to midnight!">
+    <title>🎆 New Year 2026 Countdown - Celebrate the New Beginning</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Fireworks Container (Hidden until celebration) -->
+    <div class="fireworks-container" id="fireworksContainer"></div>
+
+    <!-- Confetti Container (Hidden until celebration) -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1 class="hero-title">
+                <span class="emoji-sparkle">🎆</span>
+                <span class="title-text">Happy New Year 2026</span>
+                <span class="emoji-sparkle">🎆</span>
+            </h1>
+            <p class="hero-subtitle">Countdown to the new beginning</p>
+        </header>
+
+        <!-- Countdown Section -->
+        <section class="countdown-section" id="countdownSection">
+            <div class="countdown-grid" id="countdownGrid">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Celebration Message (Hidden initially) -->
+        <section class="celebration-section hidden" id="celebrationSection">
+            <h2 class="celebration-title">
+                <span class="emoji-party">🎉</span>
+                Happy New Year 2026!
+                <span class="emoji-party">🎉</span>
+            </h2>
+            <p class="celebration-message">Welcome to a year of endless possibilities!</p>
+        </section>
+
+        <!-- Greeting Section -->
+        <section class="greeting-section">
+            <div class="greeting-card">
+                <h3 class="greeting-title">✨ New Year Wishes ✨</h3>
+                <p class="greeting-text">Wishing you health, happiness, and success in the coming year</p>
+
+                <!-- Personalized Name Input -->
+                <div class="name-input-container">
+                    <input type="text" id="nameInput" class="name-input" placeholder="Enter your name" maxlength="30">
+                    <button id="greetBtn" class="greet-btn">Personalize</button>
+                </div>
+
+                <!-- Personalized Message -->
+                <div class="personalized-message hidden" id="personalizedMessage">
+                    <div class="personal-greeting-header">
+                        <span class="sparkle">✨</span>
+                        <span id="userName" class="user-name"></span>
+                        <span class="sparkle">✨</span>
+                    </div>
+                    <p class="personal-greeting-message" id="personalGreetingMessage">
+                        <!-- Dynamic message will be inserted here -->
+                    </p>
+                    <p class="personal-greeting-emoji" id="personalGreetingEmoji">
+                        <!-- Dynamic emoji will be inserted here -->
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">Made with ❤️ for celebrating new beginnings</p>
+            <p class="footer-credit">from <span class="developer-name">Mantu Gupta</span></p>
+            <p class="footer-copyright">© 2025 Mantu Gupta. All rights reserved.</p>
+            <div class="footer-buttons">
+                <button id="fullscreenBtn" class="footer-btn" title="Toggle Fullscreen">
+                    <span id="fullscreenIcon">⛶</span> Fullscreen
+                </button>
+                <button id="shareBtn" class="footer-btn" title="Share this page">
+                    📤 Share
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
